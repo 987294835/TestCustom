@@ -1,0 +1,18 @@
+.msg{font-size: 20px;
+line-height: 30px;}
+
+.img-person{
+	width:60%;
+	margin-left: 20%;
+}
+.name{
+	line-height: 36px;
+    display: block;
+}
+
+.changePass{
+	width: 100%;
+}
+.job{
+	margin-bottom: 20px;
+}

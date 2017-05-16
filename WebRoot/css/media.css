@@ -1,0 +1,88 @@
+/*  Media Queries
+------------------------------*/
+@media screen and (max-width: 1199px) and (min-width: 991px) {
+	.tcs-site-header { margin: 25px; }
+	.tcs-sidebar { width: 250px;	}
+	nav li { font-size: 1em; }
+	.tcs-left-nav a { padding: 15px; }
+	.tcs-top-nav a { padding: 0 30px; }
+}
+
+@media screen and (max-width: 1199px) {
+	.tcs-flex-row.flex-content-row { display: block;	}
+}
+
+@media screen and (max-width: 992px) and (min-width: 768px) {
+	.tcs-site-header,
+	.tcs-search-form { 
+		margin: 15px; 
+	}
+	.tcs-sidebar { width: 200px; } 
+	.tcs-site-header h1 { font-size: 1.6em; }
+	.square { 
+		width: 20px; 
+		height: 20px;
+	}
+	.tcs-left-nav a.active,
+	.tcs-left-nav a:hover {
+		border-left: 6px solid #13895F;		
+	}	
+	.tcs-top-nav-container {	padding: 17px 30px;	}
+	.tcs-top-nav a { padding: 0 15px; }
+}
+
+@media screen and (max-width: 992px) {
+	nav li { font-size: 1em; }
+	.tcs-left-nav a { padding: 15px 10px; }	
+	.tcs-content-container {	padding: 10px; }
+}
+@media only screen and (min-width: 768px) {
+	.tcs-left-nav {	display: block !important; }
+}
+@media screen and (max-width: 767px) {
+	.tcs-flex-row { display: block; }
+	.tcs-site-header { margin: 20px 15px; }
+	.profile-photo-container {	display: none; /* Hide profile photo on mobile view */	}
+	.tcs-search-form { margin: 10px; }
+	.tcs-top-nav-container {	padding: 10px; }
+	.tcs-top-nav a { 
+		border-left: 1px solid #c5c5c5;
+		padding: 0 7px; 
+	}
+	.tcs-top-nav li:last-child a { border-right: 1px solid #c5c5c5; }
+	.tcs-content-widget { padding: 15px;	}
+
+	/* Left column */
+	.tcs-left-nav {
+		display: none;
+		position: fixed;
+		top: 10px;
+		right: 50px;		
+		height: 300px;
+		overflow: auto;
+		width: 200px;
+		z-index: 999;
+	}
+	.tcs-left-nav a.active, 
+	.tcs-left-nav a:hover {
+		border-left: 4px solid #13895F;	
+	}
+	.mobile-menu-icon {
+		cursor: pointer;
+		display: block;
+		position: fixed;
+		top: 10px;
+		right: 10px;
+		z-index: 1000;
+	}
+	.mobile-menu-icon:hover .fa { background-color: rgba(19,137,95,0.8); }
+	.mobile-menu-icon .fa {
+		color: #fff;
+		background-color: rgba(19,137,95,0.4);
+		font-size: 1.5em;
+		width: 40px;
+		height: 40px;
+		padding-top: 9px;
+		padding-left: 11px;
+	}
+}

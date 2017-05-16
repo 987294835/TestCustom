@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.0.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+        ">
+
+	<context:annotation-config />
+	<!-- 组件扫描器 -->
+	<context:component-scan base-package="com.testcustom.dao" />
+	<!-- <bean id="deptDao" class="net.togogo.dao.DeptDao"></bean> -->
+	
+	<bean id="myDataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+
+	<bean id="mySessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="myDataSource" />
+		<property name="hibernateProperties">
+			<value>
+				hibernate.dialect=org.hibernate.dialect.MySQLDialect
+				hibernate.show_sql=true
+			</value>
+		</property>
+		<property name="packagesToScan">
+			<list>
+				<value>com.testcustom.domain</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<!-- 网易邮箱的smtp地址(发送邮件服务器地址) -->
+		<property name="host" value="smtp.163.com"></property>
+		<!-- 发送邮件服务器端口号-->
+		<property name="port" value="25"></property>
+		<!-- 发送邮件的用户名 -->
+		<property name="username" value="13502563409@163.com"></property>
+		<!-- 发送邮件用户的密码 -->
+		<property name="password" value="lck123"></property>
+		<!-- 设置发送邮件的一些属性 -->
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">true</prop>
+			</props>
+		</property>
+	</bean>
+	
+	 <!-- 配置Hibernate事务管理器 -->
+    <bean id="txManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+      <property name="sessionFactory" ref="mySessionFactory" />
+    </bean>
+   
+    <tx:advice id="txAdvice" transaction-manager="txManager">
+        <tx:attributes>
+            <tx:method name="get*" read-only="true" />
+            <tx:method name="*" propagation="REQUIRED"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <aop:config proxy-target-class="true">
+        <aop:pointcut id="serviceOperation" expression="execution(public * com.testcustom.dao.*.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="serviceOperation"/>
+    </aop:config>
+	<context:property-placeholder location="classpath:db.properties" />
+</beans>
