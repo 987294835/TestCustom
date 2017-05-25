@@ -12,25 +12,25 @@ public class sendEmail {
 
 	public static boolean sendMassage(String e_address,String i_code){
 		ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
-		//»ñµÃÓÊ¼ş·¢ËÍÕß¶ÔÏó
+		//è·å¾—é‚®ä»¶å‘é€è€…å¯¹è±¡
 		JavaMailSender sender = (JavaMailSender)ac.getBean("mailSender");
-		//´´½¨ÓÊ¼şÏûÏ¢¶ÔÏó
+		//åˆ›å»ºé‚®ä»¶æ¶ˆæ¯å¯¹è±¡
 		MimeMessage mime = sender.createMimeMessage();
 		String url = "http://localhost:8080/TestCustom2/changePass.jsp";
 		try {
-			//ÉèÖÃÓÊ¼şĞÅÏ¢¶ÔÏó
+			//è®¾ç½®é‚®ä»¶ä¿¡æ¯å¯¹è±¡
 			MimeMessageHelper helper = new MimeMessageHelper(mime,true,"utf-8");
-			//ÉèÖÃÓÊ¼ş·¢ËÍÕß
-			helper.setFrom("13502563409@163.com");
-			//ÉèÖÃÓÊ¼ş½ÓÊÕÕß
+			//è®¾ç½®é‚®ä»¶å‘é€è€…
+			helper.setFrom("....@163.com");
+			//è®¾ç½®é‚®ä»¶æ¥æ”¶è€…
 			helper.setTo(e_address);
-			//ÉèÖÃÓÊ¼şÖ÷Ìâ
-			helper.setSubject("¡¾ÕĞÆ¸ÊÔÌâ¡¿ÑéÖ¤Âë");
-			//ÉèÖÃÓÊ¼şÄÚÈİ
-			helper.setText("ÄúµÄÑéÖ¤ÂëÎª:"+i_code+",Çëµã»÷ÒÔÏÂÁ´½ÓĞŞ¸ÄÃÜÂë:"+url);
-			//·¢ËÍÓÊ¼ş
+			//è®¾ç½®é‚®ä»¶ä¸»é¢˜
+			helper.setSubject("ã€æ‹›è˜è¯•é¢˜ã€‘éªŒè¯ç ");
+			//è®¾ç½®é‚®ä»¶å†…å®¹
+			helper.setText("æ‚¨çš„éªŒè¯ç ä¸º:"+i_code+",è¯·ç‚¹å‡»ä»¥ä¸‹é“¾æ¥ä¿®æ”¹å¯†ç :"+url);
+			//å‘é€é‚®ä»¶
 			sender.send(mime);
-			System.out.println("ÓÊ¼ş·¢ËÍ³É¹¦...");
+			System.out.println("é‚®ä»¶å‘é€æˆåŠŸ...");
 			return true;
 		} catch (MessagingException e) {
 			
@@ -40,25 +40,25 @@ public class sendEmail {
 	
 	public static boolean sendExamCode(String email,String ExamCode){
 		ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
-		//»ñµÃÓÊ¼ş·¢ËÍÕß¶ÔÏó
+		//è·å¾—é‚®ä»¶å‘é€è€…å¯¹è±¡
 		JavaMailSender sender = (JavaMailSender)ac.getBean("mailSender");
-		//´´½¨ÓÊ¼şÏûÏ¢¶ÔÏó
+		//åˆ›å»ºé‚®ä»¶æ¶ˆæ¯å¯¹è±¡
 		MimeMessage mime = sender.createMimeMessage();
 		String url = "http://localhost:8080/TestCustom2/test_login.jsp";
 		try {
-			//ÉèÖÃÓÊ¼şĞÅÏ¢¶ÔÏó
+			//è®¾ç½®é‚®ä»¶ä¿¡æ¯å¯¹è±¡
 			MimeMessageHelper helper = new MimeMessageHelper(mime,true,"utf-8");
-			//ÉèÖÃÓÊ¼ş·¢ËÍÕß
-			helper.setFrom("13502563409@163.com");
-			//ÉèÖÃÓÊ¼ş½ÓÊÕÕß
+			//è®¾ç½®é‚®ä»¶å‘é€è€…
+			helper.setFrom("....@163.com");
+			//è®¾ç½®é‚®ä»¶æ¥æ”¶è€…
 			helper.setTo(email);
-			//ÉèÖÃÓÊ¼şÖ÷Ìâ
-			helper.setSubject("¡¾ÕĞÆ¸ÊÔÌâ¡¿ÑéÖ¤Âë");
-			//ÉèÖÃÓÊ¼şÄÚÈİ
-			helper.setText("ÄúµÄ¸öÈË¿¼ÊÔµÇÂ¼ÂëÎª:"+ExamCode+",Çëµã»÷ÒÔÏÂÁ´½Ó½øÈë¿¼ÊÔ:"+url);
-			//·¢ËÍÓÊ¼ş
+			//è®¾ç½®é‚®ä»¶ä¸»é¢˜
+			helper.setSubject("ã€æ‹›è˜è¯•é¢˜ã€‘éªŒè¯ç ");
+			//è®¾ç½®é‚®ä»¶å†…å®¹
+			helper.setText("æ‚¨çš„ä¸ªäººè€ƒè¯•ç™»å½•ç ä¸º:"+ExamCode+",è¯·ç‚¹å‡»ä»¥ä¸‹é“¾æ¥è¿›å…¥è€ƒè¯•:"+url);
+			//å‘é€é‚®ä»¶
 			sender.send(mime);
-			System.out.println("ÓÊ¼ş·¢ËÍ³É¹¦...");
+			System.out.println("é‚®ä»¶å‘é€æˆåŠŸ...");
 			return true;
 		} catch (MessagingException e) {
 			e.printStackTrace();
