@@ -50,7 +50,7 @@
 		<!-- 发送邮件服务器端口号-->
 		<property name="port" value="25"></property>
 		<!-- 发送邮件的用户名 -->
-		<property name="username" value="13502563409@163.com"></property>
+		<property name="username" value="...@163.com"></property>
 		<!-- 发送邮件用户的密码 -->
 		<property name="password" value="lck123"></property>
 		<!-- 设置发送邮件的一些属性 -->
